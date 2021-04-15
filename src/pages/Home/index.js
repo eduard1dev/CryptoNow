@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {FlatList, StatusBar} from 'react-native'
+import { useFonts } from 'expo-font'
 
 import data from '../../mocks/data'
 
@@ -17,6 +18,9 @@ import {
 
 
 export default function Home(){
+
+
+
     const [dataCrypto, setCrypto] = useState()
     const [filteredData, setFiltered] = useState()
 
@@ -40,8 +44,6 @@ export default function Home(){
             type: 'list',
         }
     ]
-
-    
 
 
     const renderItem = ({item}) => {
@@ -84,7 +86,15 @@ export default function Home(){
             setSearch(text)
         }
     }
+    const [fontLoaded] = useFonts({
+        Righteous: require('../../../assets/fonts/Righteous-Regular.ttf'),
+        RobotoL: require('../../../assets/fonts/Roboto-Light.ttf'),
+        Roboto: require('../../../assets/fonts/Roboto-Medium.ttf'),
+    })
 
+    if (!fontLoaded){
+        return null
+    }
 
     return(
         <Container>

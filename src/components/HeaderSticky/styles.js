@@ -13,4 +13,5 @@ export const Title = styled.Text`
     font-size: 14px;
     color: ${colors.gray2};
     text-align: center;
+    font-family: 'Righteous';
 `

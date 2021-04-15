@@ -11,6 +11,7 @@ import {
 
 
 export default function CryptoContainer(props){
+
     // função para tratar a string do valor de marketcap da crypto.
     function showMtc(mtc){
         if (mtc.length > 12){
@@ -30,11 +31,11 @@ export default function CryptoContainer(props){
     return(
         <View style={{width: '43%', alignItems: 'center', paddingTop: 30}}>
             <Container>
-                <Name numberOfLines={1} >{props.name}</Name>
+                <Name numberOfLines={1}>{props.name.toUpperCase()}</Name>
                 <Price>${props.price}</Price>
                 <Text2>PRICE</Text2>
                 <View style={{flexDirection: 'row', alignItems:'flex-end'}}><Text1>{props.symbol}</Text1><Text2>/USD</Text2></View>
-                <View style={{flexDirection: 'row', alignItems:'flex-end'}}><Text2>MTC</Text2><Text1>{showMtc(props.mtc.toString())}</Text1></View>
+                <View style={{flexDirection: 'row', alignItems:'flex-end', paddingTop: 5}}><Text2>MTC</Text2><Text1>{showMtc(props.mtc.toString())}</Text1></View>
             </Container>    
         </View>
     )

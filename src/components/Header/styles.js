@@ -15,6 +15,7 @@ export const Container = styled.View`
 export const Title = styled.Text`
     font-size: 36px;
     color: ${colors.gray2};
+    font-family: 'Righteous';
 `
 export const TitleYellow = styled(Title)`
     color: ${colors.yellow};

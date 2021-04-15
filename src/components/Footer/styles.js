@@ -11,15 +11,16 @@ export const Container = styled.View`
 export const Input = styled.TextInput`
     height: 46px;
     width: 78%;
-    background-color: #fff;
+    background-color: ${colors.white};
     align-items: flex-end;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     padding-left: 15px;
     font-size: 16px;
+    color: ${colors.primary}
 `
 export const IconContainer = styled.View`
-    background-color: #fff;
+    background-color: ${colors.white};
     height: 46px;
     width: 37px;
     justify-content: center;
