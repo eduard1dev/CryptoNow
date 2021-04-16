@@ -27,3 +27,18 @@ export const Text2 = styled.Text`
     font-family: 'RobotoM';
     text-align: center;
 `
+// not using ------------
+export const OptionsRank = styled.View`
+    flex-direction: row;
+    width: 160px;
+    height: 25px;
+    background-color: ${colors.gray2};
+    position: absolute;
+    left: 5px;
+    border-radius: 15px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin-left: 70px;
+    overflow: hidden;
+    align-items: center;            
+`

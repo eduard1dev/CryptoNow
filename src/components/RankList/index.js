@@ -14,29 +14,36 @@ import {
 
 export default function RankList(){
 
-    const Anim = useRef(new Animated.Value(0)).current
+    const AnimX = useRef(new Animated.Value(-100)).current
+    const AnimS = useRef(new Animated.Value(0.3)).current
 
     const {rank, setRank} = useContext(RankingContext)
 
     function open(){
-        Animated.timing(Anim, {
-            toValue: 160,
+        Animated.timing(AnimX, {
+            toValue: 0,
             duration: 500,
-            useNativeDriver: false,
+            useNativeDriver: true,
+        }).start()
+        Animated.timing(AnimS, {
+            toValue: 1,
+            duration: 500,
+            useNativeDriver: true,
         }).start()
     }
 
-// Passei como função assincrona pois para renderizar muitos componentes a app pode travar, travando assim a animação. 
-// Dessa forma a função setRank() só será executada após a animação.
     function close(value){
-        Animated.timing(Anim, {
-            toValue: 0,
+        Animated.timing(AnimX, {
+            toValue: -100,
             duration: 500,
-            useNativeDriver: false,
+            useNativeDriver: true,
         }).start()
-        setTimeout(() => {
-            setRank(value)
-        }, 500);
+        Animated.timing(AnimS, {
+            toValue: 0.3,
+            duration: 500,
+            useNativeDriver: true,
+        }).start()
+        setRank(value)
     }
 
     return(
@@ -44,7 +51,7 @@ export default function RankList(){
         <Animated.View 
             style={{
                 flexDirection: 'row',
-                width: Anim,
+                width: 160,
                 height: 25,
                 backgroundColor: colors.gray2,
                 position: 'absolute',
@@ -55,6 +62,10 @@ export default function RankList(){
                 marginLeft: 70,
                 overflow: 'hidden',
                 alignItems: 'center',
+                transform: [
+                    {translateX: AnimX},
+                    {scaleX: AnimS}
+                ]
             }}
             >
             <Pressable onPress={() => close(100)} style={{marginLeft: 30}}>

@@ -56,7 +56,13 @@ export default function Home(){
                     return (
                             <CryptoList>
                                 {filteredData.slice(0, rank).map((element, index) => (
-                                    <CryptoContainer key={index} name={element.name} price={element.quote.USD.price.toFixed(2)} symbol={element.symbol} mtc={element.quote.USD.market_cap.toFixed(0)}/>
+                                    <CryptoContainer 
+                                        key={index} 
+                                        name={element.name} 
+                                        price={element.quote.USD.price.toFixed(2)} 
+                                        symbol={element.symbol} mtc={element.quote.USD.market_cap.toFixed(0)}
+                                        percent={element.quote.USD.percent_change_24h}
+                                    />
                                 ))}    
                             </CryptoList>
                     )
