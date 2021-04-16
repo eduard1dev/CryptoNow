@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 import colors from '../../constants/colors'
 
 export const Container = styled.View`
-    height: 160px;
+    height: 190px;
     width: 145px;
     background-color: ${colors.white};
     elevation: 10;
@@ -15,7 +15,7 @@ export const Container = styled.View`
 `
 export const Name = styled.Text`
     font-size: 18px;
-    font-family: 'Roboto';
+    font-family: 'RobotoM';
     padding-bottom: 8px;
 
 `

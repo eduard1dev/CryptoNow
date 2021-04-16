@@ -13,3 +13,7 @@ export const CryptoList = styled.View`
     padding-bottom: 30px;
     background-color: ${colors.primary}
 `
+export const OptionsContainer= styled.View`
+    background-color: transparent;
+    padding-top: 20px;
+`

@@ -27,9 +27,10 @@ export default function CryptoContainer(props){
             return ('$' + mtc.slice(0, -3) + ',' + mtc.slice(-3) + 'M')
         } 
     }
+    console.log('renderizado')
 
     return(
-        <View style={{width: '43%', alignItems: 'center', paddingTop: 30}}>
+        <View style={{width: '43%', alignItems: 'center', paddingTop: 20}}>
             <Container>
                 <Name numberOfLines={1}>{props.name.toUpperCase()}</Name>
                 <Price>${props.price}</Price>

@@ -16,7 +16,7 @@ import {
 
 
 export default function Header(){
-    
+    console.log('renderizou header')
 
     return(
         <Container>

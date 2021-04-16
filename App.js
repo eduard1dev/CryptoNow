@@ -1,12 +1,15 @@
-import React,  { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
+import React from 'react';
 
 import Home from './src/pages/Home'
+
+import RankingProvider from './src/contexts/Ranking'
 
 export default function App() {
   return (
     <>
-      <Home/>
+      <RankingProvider>
+        <Home/>
+      </RankingProvider>
     </>
   );
 }

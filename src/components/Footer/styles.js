@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 import colors from '../../constants/colors'
 
 export const Container = styled.View`
-    height: 90px;
+    height: 70px;
     background-color: ${colors.gray1};
     flex-direction: row;
     align-items: center;
@@ -17,7 +17,7 @@ export const Input = styled.TextInput`
     border-bottom-left-radius: 10px;
     padding-left: 15px;
     font-size: 16px;
-    color: ${colors.primary}
+    color: ${colors.gray2};
 `
 export const IconContainer = styled.View`
     background-color: ${colors.white};

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import {FlatList, StatusBar} from 'react-native'
 import { useFonts } from 'expo-font'
 
@@ -8,23 +8,27 @@ import Footer from '../../components/Footer'
 import CryptoContainer from '../../components/CryptoContainer'
 import Header from '../../components/Header'
 import HeaderSticky from '../../components/HeaderSticky'
+import RankList from '../../components/RankList'
+
+// contexto
+import { RankingContext } from '../../contexts/Ranking'
 
 import {
     Container,
     CryptoList,
+    OptionsContainer,
 } from './styles'
-
 
 
 
 export default function Home(){
 
-
-
     const [dataCrypto, setCrypto] = useState()
     const [filteredData, setFiltered] = useState()
 
     const [search, setSearch] = useState('')
+
+    const { rank } = useContext(RankingContext)
 
     function getData(){
         setCrypto(data.data)   
@@ -42,9 +46,8 @@ export default function Home(){
         },
         {
             type: 'list',
-        }
+        },
     ]
-
 
     const renderItem = ({item}) => {
         switch (item.type){
@@ -52,7 +55,7 @@ export default function Home(){
                 if (filteredData){
                     return (
                             <CryptoList>
-                                {filteredData.map((element, index) => (
+                                {filteredData.slice(0, rank).map((element, index) => (
                                     <CryptoContainer key={index} name={element.name} price={element.quote.USD.price.toFixed(2)} symbol={element.symbol} mtc={element.quote.USD.market_cap.toFixed(0)}/>
                                 ))}    
                             </CryptoList>
@@ -66,7 +69,12 @@ export default function Home(){
                 )
             case 'sticky':
                 return(
-                    <HeaderSticky/>
+                    <>
+                        <HeaderSticky/>
+                        <OptionsContainer>
+                            <RankList/>
+                        </OptionsContainer>
+                    </>
                 )
             default: null     
         }
@@ -89,7 +97,7 @@ export default function Home(){
     const [fontLoaded] = useFonts({
         Righteous: require('../../../assets/fonts/Righteous-Regular.ttf'),
         RobotoL: require('../../../assets/fonts/Roboto-Light.ttf'),
-        Roboto: require('../../../assets/fonts/Roboto-Medium.ttf'),
+        RobotoM: require('../../../assets/fonts/Roboto-Medium.ttf'),
     })
 
     if (!fontLoaded){
@@ -106,8 +114,7 @@ export default function Home(){
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
             />
-            <Footer filter={filterData} search={search}>
-            </Footer>
+            <Footer filter={filterData} search={search}/>
         </Container>
     )
 }
