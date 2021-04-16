@@ -33,6 +33,7 @@ export default function RankList(){
     }
 
     function close(value){
+        setRank(value)
         Animated.timing(AnimX, {
             toValue: -100,
             duration: 500,
@@ -43,7 +44,6 @@ export default function RankList(){
             duration: 500,
             useNativeDriver: true,
         }).start()
-        setRank(value)
     }
 
     return(
