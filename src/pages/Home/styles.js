@@ -3,7 +3,7 @@ import colors from '../../constants/colors'
 
 export const Container = styled.SafeAreaView`
     flex: 1;
-    background-color: ${colors.primary};
+    background-color: ${colors.gray1};
 `
 export const CryptoList = styled.View`
     flex-direction: row;
@@ -11,9 +11,5 @@ export const CryptoList = styled.View`
     align-items: center;
     justify-content: center;
     padding-bottom: 30px;
-    background-color: ${colors.primary}
-`
-export const OptionsContainer= styled.View`
-    background-color: transparent;
-    padding-top: 20px;
+    background-color: ${colors.primary};
 `

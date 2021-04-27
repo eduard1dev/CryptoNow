@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
-import {FlatList, StatusBar} from 'react-native'
-import { useFonts } from 'expo-font'
+import {
+    FlatList, 
+    StatusBar, 
+    ActivityIndicator,
+} from 'react-native'
 
 import data from '../../mocks/data'
 
@@ -16,13 +19,12 @@ import { RankingContext } from '../../contexts/Ranking'
 import {
     Container,
     CryptoList,
-    OptionsContainer,
 } from './styles'
 
+import colors from '../../constants/colors'
 
 
 export default function Home(){
-
     const [dataCrypto, setCrypto] = useState()
     const [filteredData, setFiltered] = useState()
 
@@ -30,8 +32,11 @@ export default function Home(){
 
     const { rank } = useContext(RankingContext)
 
+    const [loadingMore, setLoadingMore] = useState(false)
+    const [loadCrypto, setLoadCrypto] = useState(10)
+
     function getData(){
-        setCrypto(data.data)   
+        setCrypto(data.data)  
         setFiltered(data.data)   
     }
 
@@ -55,13 +60,14 @@ export default function Home(){
                 if (filteredData){
                     return (
                             <CryptoList>
-                                {filteredData.slice(0, rank).map((element, index) => (
+                                {filteredData.slice(0, loadCrypto).map((element, index) => (
                                     <CryptoContainer 
                                         key={index} 
                                         name={element.name} 
                                         price={element.quote.USD.price.toFixed(2)} 
                                         symbol={element.symbol} mtc={element.quote.USD.market_cap.toFixed(0)}
                                         percent={element.quote.USD.percent_change_24h}
+                                        id={element.cmc_rank}
                                     />
                                 ))}    
                             </CryptoList>
@@ -77,9 +83,6 @@ export default function Home(){
                 return(
                     <>
                         <HeaderSticky/>
-                        <OptionsContainer>
-                            <RankList/>
-                        </OptionsContainer>
                     </>
                 )
             default: null     
@@ -89,25 +92,26 @@ export default function Home(){
     // função de pesquisa de crypto
     function filterData(text){
         if (text){
-            const newData = filteredData.filter((element) => {
+            const newData = dataCrypto.filter((element) => {
                 const itemData = element.name ? element.name.toUpperCase() : ''
                 return itemData.indexOf(text.toUpperCase()) > -1
             })
             setFiltered(newData)
             setSearch(text)
+            setLoadingMore(false)
         }else{
             setFiltered(dataCrypto)
             setSearch(text)
+            setLoadCrypto(10)
+            setLoadingMore(false)
         }
     }
-    const [fontLoaded] = useFonts({
-        Righteous: require('../../../assets/fonts/Righteous-Regular.ttf'),
-        RobotoL: require('../../../assets/fonts/Roboto-Light.ttf'),
-        RobotoM: require('../../../assets/fonts/Roboto-Medium.ttf'),
-    })
 
-    if (!fontLoaded){
-        return null
+    function handleFetchMore(distance){
+        console.log(distance)
+        if (distance < 0) return
+        setLoadingMore(true)
+        setLoadCrypto(oldstate => oldstate + 10)
     }
 
     return(
@@ -119,6 +123,15 @@ export default function Home(){
                 data={items}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString()}
+                onEndReached={({distanceFromEnd}) => handleFetchMore(distanceFromEnd)}
+                onEndReachedThreshold={0.1}
+                ListFooterComponent={
+                    loadingMore
+                    ?
+                    <ActivityIndicator style={{backgroundColor: colors.primary}} size='large' color={colors.gray2}/>
+                    :
+                    null
+                }
             />
             <Footer filter={filterData} search={search}/>
         </Container>

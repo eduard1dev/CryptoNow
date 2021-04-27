@@ -3,6 +3,7 @@ import {View} from 'react-native'
 
 import {
     Container,
+    RankNumber,
     Name,
     Price,
     Text1,
@@ -29,11 +30,15 @@ export default function CryptoContainer(props){
             return ('$' + mtc.slice(0, -3) + ',' + mtc.slice(-3) + 'M')
         } 
     }
-    console.log('renderizado')
 
     return(
-        <View style={{width: '43%', alignItems: 'center', paddingTop: 20}}>
+        <View style={{width: '46%', alignItems: 'center', paddingTop: 20}}>
             <Container>
+                <RankNumber>
+                    <Text2 numberOfLines={1}>
+                        {props.id}
+                    </Text2>
+                </RankNumber>
                 <Name numberOfLines={1}>{props.name.toUpperCase()}</Name>
                 <Price>${props.price}</Price>
                 <Text2>PRICE</Text2>
