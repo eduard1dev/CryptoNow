@@ -3,6 +3,7 @@ import {
     FlatList, 
     StatusBar, 
     ActivityIndicator,
+    View,
 } from 'react-native'
 
 import data from '../../mocks/data'
@@ -42,6 +43,7 @@ export default function Home(){
 
     useEffect(() => getData(), [])
 
+
     const items = [
         {
             type: 'header',
@@ -65,11 +67,12 @@ export default function Home(){
                                         key={index} 
                                         name={element.name} 
                                         price={element.quote.USD.price.toFixed(2)} 
-                                        symbol={element.symbol} mtc={element.quote.USD.market_cap.toFixed(0)}
+                                        symbol={element.symbol} 
+                                        mtc={element.quote.USD.market_cap.toFixed(0)}
                                         percent={element.quote.USD.percent_change_24h}
                                         id={element.cmc_rank}
                                     />
-                                ))}    
+                                ))}
                             </CryptoList>
                     )
                 }else{
@@ -98,18 +101,15 @@ export default function Home(){
             })
             setFiltered(newData)
             setSearch(text)
-            setLoadingMore(false)
         }else{
             setFiltered(dataCrypto)
             setSearch(text)
             setLoadCrypto(10)
-            setLoadingMore(false)
         }
     }
 
     function handleFetchMore(distance){
-        console.log(distance)
-        if (distance < 0) return
+        if (distance < 1) return
         setLoadingMore(true)
         setLoadCrypto(oldstate => oldstate + 10)
     }
@@ -117,7 +117,8 @@ export default function Home(){
     return(
         <Container>
             <StatusBar hidden={false} backgroundColor='#c4c4c4' barStyle='dark-content'/>
-            <FlatList
+            <View style={{flex: 1}}>
+                <FlatList
                 stickyHeaderIndices={[1]}
                 showsVerticalScrollIndicator={false}
                 data={items}
@@ -133,6 +134,8 @@ export default function Home(){
                     null
                 }
             />
+            </View>
+            {console.log(loadingMore)}
             <Footer filter={filterData} search={search}/>
         </Container>
     )

@@ -1,12 +1,9 @@
 import styled from 'styled-components/native'
 import colors from '../../constants/colors'
 
-
-
-
 export const Container = styled.View`
     flex-direction: row;
-    height: 60px;
+    height: 70px;
     background-color: ${colors.gray1};
     padding-left: 5%;
     padding-bottom: 10px;

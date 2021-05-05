@@ -3,11 +3,12 @@ import styled from 'styled-components/native'
 import colors from '../../constants/colors'
 
 export const Container = styled.View`
-    height: 190px;
+    height: 200px;
     width: 160px;
     background-color: ${colors.white};
-    elevation: 10;
+    elevation: 5;
     border-radius: 20px;
+    border-top-left-radius: 10px;
     align-items: center;
     justify-content: center;
     padding-right: 10px;
@@ -17,11 +18,12 @@ export const Container = styled.View`
 export const RankNumber = styled.View`
     height: 20px;
     width: 20px;
-    border-radius: 10px;
-    background-color: ${colors.gray1};
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 10px;
+    background-color: ${colors.primary};
     position: absolute;
-    left: -5px;
-    top: -5px;
+    left: 0px;
+    top: 0px;
     align-items: center;
     justify-content: center;
 `
@@ -29,18 +31,20 @@ export const Name = styled.Text`
     font-size: 18px;
     font-family: 'RobotoM';
     padding-bottom: 8px;
-
+    color: ${colors.gray2};
 `
 export const Price = styled.Text`
     font-size: 24px;
     margin-top: -4px;
     margin-bottom: -4px;
-    font-family: 'RobotoL';
+    font-family: 'Roboto';
+    color: ${colors.gray2};
 `
 export const Text1 = styled.Text`
     font-size: 18px;
     font-family: 'Roboto';
     margin-bottom: -2px;
+    color: ${colors.gray2};
 `
 export const Text2 = styled.Text`
     font-size: 12px;

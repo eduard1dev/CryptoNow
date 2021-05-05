@@ -42,8 +42,8 @@ export default function CryptoContainer(props){
                 <Name numberOfLines={1}>{props.name.toUpperCase()}</Name>
                 <Price>${props.price}</Price>
                 <Text2>PRICE</Text2>
-                <View style={{flexDirection: 'row', alignItems:'flex-end'}}><Text1>{props.symbol}</Text1><Text2>/USD</Text2></View>
-                <View style={{flexDirection: 'row', alignItems:'flex-end', paddingTop: 5}}><Text2>MTC</Text2><Text1>{showMtc(props.mtc.toString())}</Text1></View>
+                <View style={{flexDirection: 'row', alignItems:'flex-end'}}><Text1>{props.symbol}</Text1><Text2> / USD</Text2></View>
+                <View style={{flexDirection: 'row', alignItems:'flex-end', paddingTop: 5}}><Text2>MTC </Text2><Text1>{showMtc(props.mtc.toString())}</Text1></View>
                 <PercentContainer percent={props.percent}>
                     <PercentText>{props.percent.toFixed(2)}%</PercentText>
                 </PercentContainer>
