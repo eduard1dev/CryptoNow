@@ -10,11 +10,8 @@ Para a prototipagem do do projeto, utilizei o ***Figma***. Nesse projeto utilize
 - Styled Components
 
 # Working
-<div align='center'>
-<h3>Function search Crypto</h3>
-<img src="./assets/demo/videoSearch.gif" width="270" height="450">
-</div align='center'>
-<div align='center'>
-<h3>Function filter</h3>
-<img src="./assets/demo/videoFilter.gif" width="270" height="450">
-</div align='center'>
+### Function search Crypto
+![search](./assets/demo/videoSearch.gif)
+### Function filter
+![filter](/assets/demo/videoFilter.gif)
+
