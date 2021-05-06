@@ -18,9 +18,10 @@ export default function Routes(){
                 inactiveTintColor: colors.gray2,
                 style: {
                     backgroundColor: colors.gray1,
-                    height: 45,
-                    margin: 0,
+                    height: 40,
+                    paddingVertical: 5,
                     elevation: 0,
+                    borderTopWidth: 0,
                 },
             }}
         >
@@ -43,7 +44,7 @@ export default function Routes(){
                 options={{
                     tabBarButton: (props) => (
                         <TabBarIcon
-                            name='home'
+                            name='wallet'
                             label='My Cryptos'
                             {...props}
                         />

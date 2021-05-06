@@ -22,13 +22,13 @@ export default function TabBarIcon({onPress, name, accessibilityState, label}){
         onPress()
         Animated.sequence([
             Animated.spring(sizeIcon, {
-                toValue: 1.15,
+                toValue: 1.1,
                 speed: 100,
                 useNativeDriver: true,
             }),
             Animated.spring(sizeIcon, {
                 toValue: 1,
-                speed: 8,
+                speed: 100,
                 useNativeDriver: true,
             })
         ]).start()
@@ -48,7 +48,7 @@ export default function TabBarIcon({onPress, name, accessibilityState, label}){
                     }]
                 }}
             >
-                <Entypo size={30} name={name} color={color}/>
+                <Entypo size={25} name={name} color={color}/>
                 <Label focused={focused}>
                     {label}
                 </Label>

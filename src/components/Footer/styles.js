@@ -2,10 +2,10 @@ import styled from 'styled-components/native'
 import colors from '../../constants/colors'
 
 export const Container = styled.View`
-    height: 50px;
+    height: 45px;
     background-color: ${colors.gray1};
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 `
 export const Input = styled.TextInput`

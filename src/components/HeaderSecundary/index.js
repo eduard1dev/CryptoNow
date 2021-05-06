@@ -12,20 +12,15 @@ import {
 } from './styles'
 
 
-
-
-export default function Header(){
+export default function HeaderSecundary(){
     return(
         <Container>
-            <TitleYellow>
-                Crypto
-            </TitleYellow>
             <Title>
-                Now
+                My 
             </Title>
-            <View style={{position: 'absolute', right:'5%', bottom: 10 }}>
-                <FontAwesome5 name='bitcoin' color={colors.yellow} size={42}/>
-            </View>
+            <TitleYellow>
+                Cryptos
+            </TitleYellow>
         </Container>
     )
 }

@@ -10,7 +10,7 @@ import data from '../../mocks/data'
 
 import Footer from '../../components/Footer'
 import CryptoContainer from '../../components/CryptoContainer'
-import Header from '../../components/Header'
+import HeaderPrimary from '../../components/HeaderPrimary'
 import HeaderSticky from '../../components/HeaderSticky'
 import RankList from '../../components/RankList'
 
@@ -80,7 +80,7 @@ export default function Home(){
                 }
             case 'header':
                 return (
-                    <Header/>
+                    <HeaderPrimary/>
                 )
             case 'sticky':
                 return(
