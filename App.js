@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import Routes from './src/routes'
 
-import RankingProvider from './src/contexts/Ranking'
+import FavCryptosProvider from './src/contexts/FavCryptos'
 
 
 export default function App() {
@@ -22,9 +22,9 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <RankingProvider>
+      <FavCryptosProvider>
         <Routes/>
-      </RankingProvider>
+      </FavCryptosProvider>
     </NavigationContainer>
   );
 }

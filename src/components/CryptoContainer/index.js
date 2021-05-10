@@ -1,5 +1,7 @@
-import React from 'react'
-import {View} from 'react-native'
+import React, { useState, useRef, useContext } from 'react'
+import { View, Animated, TouchableOpacity } from 'react-native'
+
+import { Entypo } from '@expo/vector-icons'
 
 import {
     Container,
@@ -12,8 +14,45 @@ import {
     PercentText,
 } from './styles'
 
+import colors from '../../constants/colors'
+
+import { FavCryptosContext } from '../../contexts/FavCryptos'
+
 
 export default function CryptoContainer(props){
+    const { favCryptos, handleAddFavCrypto, handleRemoveFavCrypto } = useContext(FavCryptosContext)
+
+    const favValueAnimation = useRef(new Animated.Value(0)).current
+
+    const handleFavAnimation = () => {
+        Animated.sequence([
+            Animated.timing(favValueAnimation,{
+                toValue: 1,
+                duration: 500,
+                useNativeDriver: true,
+            }),
+            Animated.timing(favValueAnimation,{
+                toValue: 0,
+                delay: 2500,
+                duration: 500,
+                useNativeDriver: true,
+            })
+        ]).start()
+    }
+
+    // o state inicial vai verificar se o id está favoritado em favCryptos e retornar um boolean
+    const [favIcon, setFavIcon] = useState(favCryptos.includes(props.id))
+
+
+    const handleFavCrypto = (idFavCrypto) => {
+        if (favIcon){
+            handleRemoveFavCrypto(idFavCrypto)
+        }else{
+            handleAddFavCrypto(idFavCrypto)
+        }
+
+        setFavIcon(!favIcon)
+    }
 
     // função para tratar a string do valor de marketcap da crypto.
     function showMtc(mtc){
@@ -32,13 +71,32 @@ export default function CryptoContainer(props){
     }
 
     return(
-        <View style={{width: '46%', alignItems: 'center', paddingTop: 20}}>
-            <Container>
+        <>
+            <Container
+                activeOpacity={0.9}
+                onPress={handleFavAnimation}
+            >
                 <RankNumber>
                     <Text2 numberOfLines={1}>
                         {props.id}
                     </Text2>
                 </RankNumber>
+                <Animated.View 
+                 style={{ 
+                    position: 'absolute',
+                    right: 4,
+                    top: 4,
+                    opacity: favValueAnimation,
+                }}
+                >
+                    <TouchableOpacity onPress={() => handleFavCrypto(props.id)} activeOpacity={0.9}>
+                    {
+                        favIcon ?
+                        <Entypo name='star' size={20} color={colors.yellow} /> :
+                        <Entypo name='star-outlined' size={20} color={colors.gray2} />
+                    }
+                    </TouchableOpacity>
+                </Animated.View>
                 <Name numberOfLines={1}>{props.name.toUpperCase()}</Name>
                 <Price>${props.price}</Price>
                 <Text2>PRICE</Text2>
@@ -48,6 +106,6 @@ export default function CryptoContainer(props){
                     <PercentText>{props.percent.toFixed(2)}%</PercentText>
                 </PercentContainer>
             </Container>    
-        </View>
+        </>
     )
 }

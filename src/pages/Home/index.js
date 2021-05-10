@@ -12,10 +12,9 @@ import Footer from '../../components/Footer'
 import CryptoContainer from '../../components/CryptoContainer'
 import HeaderPrimary from '../../components/HeaderPrimary'
 import HeaderSticky from '../../components/HeaderSticky'
-import RankList from '../../components/RankList'
 
-// contexto
-import { RankingContext } from '../../contexts/Ranking'
+// contexto cryptos favoritadas
+import { FavCryptosContext } from '../../contexts/FavCryptos'
 
 import {
     Container,
@@ -31,7 +30,7 @@ export default function Home(){
 
     const [search, setSearch] = useState('')
 
-    const { rank } = useContext(RankingContext)
+    const { favCryptos } = useContext(FavCryptosContext)
 
     const [loadingMore, setLoadingMore] = useState(false)
     const [loadCrypto, setLoadCrypto] = useState(10)
@@ -63,17 +62,19 @@ export default function Home(){
                     return (
                             <CryptoList>
                                 {filteredData.slice(0, loadCrypto).map((element, index) => (
-                                    <CryptoContainer 
-                                        key={index} 
-                                        name={element.name} 
-                                        price={element.quote.USD.price.toFixed(2)} 
-                                        symbol={element.symbol} 
-                                        mtc={element.quote.USD.market_cap.toFixed(0)}
-                                        percent={element.quote.USD.percent_change_24h}
-                                        id={element.cmc_rank}
-                                    />
+                                    <View style={{width: '46%', alignItems: 'center', paddingTop: 20}} key={index}>
+                                        <CryptoContainer 
+                                            name={element.name} 
+                                            price={element.quote.USD.price.toFixed(2)} 
+                                            symbol={element.symbol} 
+                                            mtc={element.quote.USD.market_cap.toFixed(0)}
+                                            percent={element.quote.USD.percent_change_24h}
+                                            id={element.cmc_rank}
+                                        />
+                                    </View>
                                 ))}
                             </CryptoList>
+                        
                     )
                 }else{
                     break
@@ -85,7 +86,7 @@ export default function Home(){
             case 'sticky':
                 return(
                     <>
-                        <HeaderSticky/>
+                        <HeaderSticky title='CRYPTO CURRENCY NOW'/>
                     </>
                 )
             default: null     

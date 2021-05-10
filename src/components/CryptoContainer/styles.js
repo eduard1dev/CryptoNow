@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 
 import colors from '../../constants/colors'
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
     height: 200px;
     width: 160px;
     background-color: ${colors.white};
@@ -13,6 +13,7 @@ export const Container = styled.View`
     justify-content: center;
     padding-right: 10px;
     padding-left: 10px;
+    padding-top: 10px;
     text-align: center;
 `
 export const RankNumber = styled.View`
@@ -30,7 +31,7 @@ export const RankNumber = styled.View`
 export const Name = styled.Text`
     font-size: 18px;
     font-family: 'RobotoM';
-    padding-bottom: 8px;
+    padding-bottom: 3px;
     color: ${colors.gray2};
 `
 export const Price = styled.Text`
@@ -64,3 +65,4 @@ export const PercentText = styled.Text`
     font-family: 'Roboto';
     color: ${colors.white};
 `
+

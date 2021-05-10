@@ -1,3 +1,4 @@
+import { useLinkProps } from '@react-navigation/native'
 import React from 'react'
 import { View, Text} from 'react-native'
 
@@ -7,11 +8,11 @@ import {
 } from './styles'
 
 
-export default function HeaderSticky(){
+export default function HeaderSticky(props){
     return (
         <Container>
             <Title>
-                CURRENCY VALUES NOW
+                {props.title}
             </Title>
         </Container>
     )
