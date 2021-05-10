@@ -24,9 +24,9 @@ export default function MyCryptos(){
             data.map((element) => {
                     if (element.cmc_rank == item){
                         return (
-                            <View style={{paddingBottom: 20}}>
+                            <View style={{paddingBottom: 20}} key={index} >
                                 <CryptoContainer 
-                                    key={index} 
+                                     
                                     name={element.name} 
                                     price={element.quote.USD.price.toFixed(2)} 
                                     symbol={element.symbol} 

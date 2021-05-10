@@ -1,7 +1,7 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useRef, useContext, useEffect } from 'react'
 import { View, Animated, TouchableOpacity } from 'react-native'
 
-import { Entypo } from '@expo/vector-icons'
+import { FontAwesome } from '@expo/vector-icons'
 
 import {
     Container,
@@ -43,6 +43,7 @@ export default function CryptoContainer(props){
     // o state inicial vai verificar se o id está favoritado em favCryptos e retornar um boolean
     const [favIcon, setFavIcon] = useState(favCryptos.includes(props.id))
 
+    useEffect(() => setFavIcon(favCryptos.includes(props.id)), [favCryptos])
 
     const handleFavCrypto = (idFavCrypto) => {
         if (favIcon){
@@ -50,8 +51,8 @@ export default function CryptoContainer(props){
         }else{
             handleAddFavCrypto(idFavCrypto)
         }
-
         setFavIcon(!favIcon)
+
     }
 
     // função para tratar a string do valor de marketcap da crypto.
@@ -72,6 +73,7 @@ export default function CryptoContainer(props){
 
     return(
         <>
+            {console.log(favCryptos)}
             <Container
                 activeOpacity={0.9}
                 onPress={handleFavAnimation}
@@ -84,16 +86,16 @@ export default function CryptoContainer(props){
                 <Animated.View 
                  style={{ 
                     position: 'absolute',
-                    right: 4,
-                    top: 4,
+                    right: 5,
+                    top: 5,
                     opacity: favValueAnimation,
                 }}
                 >
                     <TouchableOpacity onPress={() => handleFavCrypto(props.id)} activeOpacity={0.9}>
                     {
                         favIcon ?
-                        <Entypo name='star' size={20} color={colors.yellow} /> :
-                        <Entypo name='star-outlined' size={20} color={colors.gray2} />
+                        <FontAwesome name='star' size={18} color={colors.yellow} /> :
+                        <FontAwesome name='star-o' size={18} color={colors.gray2} />
                     }
                     </TouchableOpacity>
                 </Animated.View>
