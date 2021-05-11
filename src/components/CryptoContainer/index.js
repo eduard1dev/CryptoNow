@@ -73,7 +73,6 @@ export default function CryptoContainer(props){
 
     return(
         <>
-            {console.log(favCryptos)}
             <Container
                 activeOpacity={0.9}
                 onPress={handleFavAnimation}

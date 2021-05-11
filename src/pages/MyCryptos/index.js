@@ -8,6 +8,7 @@ import CryptoContainer from '../../components/CryptoContainer'
 
 import {
     Container,
+    TextEmpty
 } from './styles'
 
 import { FavCryptosContext } from '../../contexts/FavCryptos'
@@ -26,7 +27,6 @@ export default function MyCryptos(){
                         return (
                             <View style={{paddingBottom: 20}} key={index} >
                                 <CryptoContainer 
-                                     
                                     name={element.name} 
                                     price={element.quote.USD.price.toFixed(2)} 
                                     symbol={element.symbol} 
@@ -35,7 +35,6 @@ export default function MyCryptos(){
                                     id={element.cmc_rank}
                                 />
                             </View>
-                            
                         )
                     }
                 }  
@@ -48,20 +47,28 @@ export default function MyCryptos(){
             <HeaderSecundary/>
             <HeaderSticky title='YOUR FAVORITED CRYPTOS'/>
             <View style={{ flex: 1 }}>
-                <FlatList
-                    horizontal={false}
-                    columnWrapperStyle={{
-                        justifyContent: 'space-around',
-                    }}
-                    contentContainerStyle={{
-                        paddingTop: 20,
-                    }}
-                    numColumns={2}                    
-                    showsVerticalScrollIndicator={false}
-                    data={favCryptos}
-                    renderItem={renderItem}
-                    keyExtractor={(item, index) => index.toString()}
-                />
+                {
+                    favCryptos.length > 0 
+                    ?
+                    <FlatList
+                        horizontal={false}
+                        columnWrapperStyle={{
+                            justifyContent: 'space-around',
+                        }}
+                        contentContainerStyle={{
+                            paddingTop: 20,
+                        }}
+                        numColumns={2}                    
+                        showsVerticalScrollIndicator={false}
+                        data={favCryptos}
+                        renderItem={renderItem}
+                        keyExtractor={(item, index) => index.toString()}
+                    />
+                    :
+                    <TextEmpty>
+                        Favorite alguma crypto.
+                    </TextEmpty>
+                }
             </View>
         </Container>
     )

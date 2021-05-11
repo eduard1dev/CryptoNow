@@ -10,8 +10,10 @@ Para a prototipagem do do projeto, utilizei o ***Figma***. Nesse projeto utilize
 - Styled Components
 
 # Working
-### Function search Crypto
-![search](./assets/demo/videoSearch.gif)
-### Function filter
-![filter](/assets/demo/videoFilter.gif)
+### Function Search Crypto
+![search](./assets/demo/CryptoNow-Search.gif)
+### Function Favorite Crypto
+![filter](./assets/demo/CryptoNow-FavCrypto.gif)
+### Infinity Scroll
+![InfinityScroll](./assets/demo/CryptoNow-InfinityScroll.gif)
 
